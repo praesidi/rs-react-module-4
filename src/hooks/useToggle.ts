@@ -32,7 +32,7 @@ export const useToggle = (
           setCurrentValue(value[arrayIndex.current]);
         }
 
-        // iterating through initial aray
+        // iterating through initial array
         if (!toggleValue) {
           if (arrayIndex.current >= value.length - 1) {
             arrayIndex.current = 0;
@@ -43,6 +43,7 @@ export const useToggle = (
           setCurrentValue(value[arrayIndex.current]);
         }
       } else {
+        // changing value if hook parameter is not an array
         setCurrentValue(!currentValue);
       }
     },
