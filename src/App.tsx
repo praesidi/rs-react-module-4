@@ -1,20 +1,14 @@
 import "./App.css";
+import { useHover } from "./hooks/useHover";
 
 function App() {
-  return (
-    <>
-      <h1>Custom hooks overview</h1>
-      <div className="card">
-        <button onClick={() => {}}>Action</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+	const { hovered, ref } = useHover<HTMLDivElement>();
+
+	return (
+		<div ref={ref}>
+			{hovered ? "На меня навели мышку" : "Наведи мышкой на меня"}
+		</div>
+	);
 }
 
 export default App;
