@@ -1,20 +1,18 @@
 import "./App.css";
+import { useLocalStorage } from "./hooks/useLocalStorage";
 
 function App() {
-  return (
-    <>
-      <h1>Custom hooks overview</h1>
-      <div className="card">
-        <button onClick={() => {}}>Action</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+	const [value, { setItem, removeItem }] = useLocalStorage("some-key");
+
+	return (
+		<div>
+			<p>Значение из LocalStorage: {value}</p>
+			<div>
+				<button onClick={() => setItem("new storage value")}>Задать значение</button>
+				<button onClick={() => removeItem()}>Удалить значение</button>
+			</div>
+		</div>
+	);
 }
 
 export default App;
