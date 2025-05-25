@@ -1,20 +1,38 @@
 import "./App.css";
+import { useFetch } from "./hooks/useFetch";
+
+interface Post {
+	id: number;
+	userId: number;
+	title: string;
+	body: string;
+}
 
 function App() {
-  return (
-    <>
-      <h1>Custom hooks overview</h1>
-      <div className="card">
-        <button onClick={() => {}}>Action</button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+	const { data, isLoading, error, refetch } = useFetch<Post[]>(
+		"https://jsonplaceholder.typicode.com/posts"
+	);
+
+	return (
+		<div>
+			<div>
+				<button
+					onClick={() =>
+						refetch({
+							params: {
+								_limit: 3,
+							},
+						})
+					}
+				>
+					Перезапросить
+				</button>
+			</div>
+			{isLoading && "Загрузка..."}
+			{error && "Произошла ошибка"}
+			{data && !isLoading && data.map((item) => <div key={item.id}>{item.title}</div>)}
+		</div>
+	);
 }
 
 export default App;
