@@ -9,14 +9,14 @@ interface ScreenSize {
 export const useViewportSize = () => {
   const [size, setSize] = useState<ScreenSize | null>(null);
 
-  const handleWindowRezise = () => {
+  const handleWindowResize = () => {
     setSize({
       height: window.innerHeight,
       width: window.innerWidth,
     });
   };
 
-  useWindowEvent("resize", handleWindowRezise);
+  useWindowEvent("resize", handleWindowResize);
 
   return {
     height: size?.height,
