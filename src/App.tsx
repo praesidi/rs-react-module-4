@@ -5,7 +5,7 @@ function App() {
   const [scroll, scrollTo] = useWindowScroll();
 
   return (
-    <div>
+    <div className="header">
       <p>
         Scroll position x: {scroll.x}, y: {scroll.y}
       </p>

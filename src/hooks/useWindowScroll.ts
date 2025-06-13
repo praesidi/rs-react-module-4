@@ -3,15 +3,15 @@ import { useWindowEvent } from "./useWindowEvent";
 
 type Scroll = {
   x?: number;
-  y?: number;
+  y: number;
 };
 
 type ReturnValue = [scroll: Scroll, scrollTo: (args: Scroll) => void];
 
 export const useWindowScroll = (): ReturnValue => {
   const [scroll, setScroll] = useState<Scroll>({
-    x: 0,
-    y: 0,
+    x: window.scrollX,
+    y: window.scrollY,
   });
 
   const handleScrollTo = (newValue: Scroll) => {
